@@ -1,17 +1,19 @@
-// // SPDX-License-Identifier: MIT
-// pragma solidity ^0.8.17;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.17;
 
-// import {Script} from "forge-std/Script.sol";
+import {Script} from "forge-std/Script.sol";
 
-// import {Greeter} from "src/Greeter.sol";
+import {Clones} from "src/Clones.sol";
+import {SnapSomething} from "src/SnapSomething.sol";
 
-// /// @notice A very simple deployment script
-// contract Deploy is Script {
-//     /// @notice The main script entrypoint
-//     /// @return greeter The deployed contract
-//     function run() external returns (Greeter greeter) {
-//         vm.startBroadcast();
-//         greeter = new Greeter("GM");
-//         vm.stopBroadcast();
-//     }
-// }
+contract Deploy is Script {
+
+    function run() external returns (Clones clones, SnapSomething snapLogic) {
+        string memory RPC_ETH = vm.envString("RPC_URL");
+        uint256 deployerPrivateKey = vm.envUint("DEPLOYER_KEY");
+        vm.startBroadcast();
+        clones = new Clones();
+        snapLogic = new SnapSomething();
+        vm.stopBroadcast();
+    }
+}

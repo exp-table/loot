@@ -10,6 +10,8 @@ import {SnapSomething} from "src/SnapSomething.sol";
 
 import {ERC20Mock} from "./ERC20Mock.sol";
 
+import "forge-std/console.sol";
+
 contract SnapSomethingTest is Test {
 
     Clones clones;
@@ -57,5 +59,8 @@ contract SnapSomethingTest is Test {
         // user should be marked as claimed
         assertEq(clone.claimed(0), true);
 
+        // cannot double claim
+        vm.expectRevert();
+        clone.claim(user, 0, 25, proof);
     }
 }
