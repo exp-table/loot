@@ -5,7 +5,7 @@ import {ERC20} from "solady/tokens/ERC20.sol";
 import {MerkleProofLib} from "solady/utils/MerkleProofLib.sol";
 import {LibBitmap} from "solady/utils/LibBitmap.sol";
 
-contract SnapSomething {
+contract Loot {
     using LibBitmap for LibBitmap.Bitmap;
 
 

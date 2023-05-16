@@ -6,7 +6,7 @@ import "forge-std/Test.sol";
 import {ERC20} from "solady/tokens/ERC20.sol";
 
 import {Clones} from "src/Clones.sol";
-import {SnapSomething} from "src/SnapSomething.sol";
+import {Loot} from "src/Loot.sol";
 
 import {ERC20Mock} from "./ERC20Mock.sol";
 
@@ -15,20 +15,20 @@ import "forge-std/console.sol";
 contract SnapSomethingTest is Test {
 
     Clones clones;
-    SnapSomething snapLogic; // logic
+    Loot lootLogic; // logic
     ERC20Mock token;
 
     bytes32 merkleRoot = 0x687c53cf87cb252c2f54d050124e20b74693858819fad621a423bb27038e8702;
 
     function setUp() external {
         clones = new Clones();
-        snapLogic = new SnapSomething();
+        lootLogic = new Loot();
         token = new ERC20Mock();
         token.mint(address(this), type(uint256).max);
     }
 
     function testInitialization() external {
-        SnapSomething clone = SnapSomething(clones.clone(address(snapLogic)));
+        Loot clone = Loot(clones.clone(address(lootLogic)));
         // initialize the clone
         clone.initialize(address(token), merkleRoot);
         // check that the clone is initialized
@@ -42,7 +42,7 @@ contract SnapSomethingTest is Test {
     }
 
     function testClaim() external {
-        SnapSomething clone = SnapSomething(clones.clone(address(snapLogic)));
+        Loot clone = Loot(clones.clone(address(lootLogic)));
         // initialize the clone
         clone.initialize(address(token), merkleRoot);
         // send tokens
