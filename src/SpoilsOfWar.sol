@@ -5,16 +5,14 @@ import {ERC20} from "solady/tokens/ERC20.sol";
 import {MerkleProofLib} from "solady/utils/MerkleProofLib.sol";
 import {LibBitmap} from "solady/utils/LibBitmap.sol";
 
-contract SnapSomething {
+contract SpoilsOfWar {
     using LibBitmap for LibBitmap.Bitmap;
-
 
     /*###############################################################
                             EVENTS
     ###############################################################*/
 
     event Claimed(address indexed user, uint256 index, uint256 amount);
-
 
     /*###############################################################
                             STORAGE
@@ -66,7 +64,7 @@ contract SnapSomething {
         bytes32 node = keccak256(abi.encodePacked(_index, _user, _amount));
         require(MerkleProofLib.verify(_proof, merkleRoot, node), "INVALID_PROOF");
         claims.set(_index);
-        uint256 scaledAmount = _amount * (10**token.decimals());
+        uint256 scaledAmount = _amount * (10 ** token.decimals());
         token.transfer(_user, scaledAmount);
         emit Claimed(_user, _index, scaledAmount);
     }
