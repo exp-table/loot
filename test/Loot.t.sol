@@ -30,7 +30,7 @@ contract SnapSomethingTest is Test {
     function testInitialization() external {
         Loot clone = Loot(clones.clone(address(lootLogic)));
         // initialize the clone
-        clone.initialize(address(token), merkleRoot);
+        clone.initialize(address(token), merkleRoot, 0);
         // check that the clone is initialized
         assertEq(address(clone.token()), address(token));
         assertEq(clone.merkleRoot(), merkleRoot);
@@ -38,13 +38,13 @@ contract SnapSomethingTest is Test {
 
         // cannot re-initialize
         vm.expectRevert();
-        clone.initialize(address(token), merkleRoot);
+        clone.initialize(address(token), merkleRoot, 0);
     }
 
     function testClaim() external {
         Loot clone = Loot(clones.clone(address(lootLogic)));
         // initialize the clone
-        clone.initialize(address(token), merkleRoot);
+        clone.initialize(address(token), merkleRoot, 0);
         // send tokens
         token.transfer(address(clone), 100 * 1e18);
         address user = 0x606F388Dc144E3C3d8C87b76781BF92e5B053F12;

@@ -35,11 +35,13 @@ contract Loot {
                             INITIALIZATION
     ###############################################################*/
 
-    function initialize(address _token, bytes32 _merkleRoot) external {
+    function initialize(address _token, bytes32 _merkleRoot, uint256 _amount) external {
         require(address(token) == address(0), "ALREADY_INITIALIZED");
         token = ERC20(_token);
         merkleRoot = _merkleRoot;
         owner = msg.sender;
+
+        token.transferFrom(msg.sender, address(this), _amount);
     }
 
     /*###############################################################
