@@ -10,8 +10,9 @@ contract Deploy is Script {
 
     function run() external returns (Clones clones, Loot lootLogic) {
         string memory RPC_ETH = vm.envString("RPC_URL");
+        vm.createSelectFork(RPC_ETH);
         uint256 deployerPrivateKey = vm.envUint("DEPLOYER_KEY");
-        vm.startBroadcast();
+        vm.startBroadcast(deployerPrivateKey);
         clones = new Clones();
         lootLogic = new Loot();
         vm.stopBroadcast();
