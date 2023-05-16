@@ -1,8 +1,10 @@
-<img align="right" width="150" height="150" top="100" src="./public/readme.jpg">
+<img align="right" width="212" height="320" top="100" src="./public/readme.jpg">
 
 # Loot • [![tests](https://github.com/exp-table/loot/actions/workflows/ci.yml/badge.svg?label=tests)](https://github.com/exp-table/loot/actions/workflows/ci.yml) ![license](https://img.shields.io/github/license/refcell/femplate?label=license) ![solidity](https://img.shields.io/badge/solidity-^0.8.17-lightgrey)
 
 A **minimal** proxy for a claimable Merkle-tree-based contract.
+
+You can use it through [here](shareloot.xyz).
 
 ### Usage
 
